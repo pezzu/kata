@@ -1,7 +1,9 @@
 const bent = require('bent')
 const fs = require('fs')
 
-const kataId = process.argv[2]
+const { extractId } = require('./cw-url-parser')
+
+const kataId = extractId(process.argv[2])
 
 if (!kataId) {
   console.error('Command line: kata.js <id|slug>')
