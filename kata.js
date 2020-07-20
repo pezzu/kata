@@ -10,17 +10,12 @@ if (!kataId) {
 
 (async () => {
   const kata = await getKata(kataId)
-  const readme = {
-    name: 'README.md',
-    data: createReadMe(kata)
-  }
-
   const code = {
     name: kata.slug + '.js',
-    data: ''
+    data: `/**\n${kata.description}\n*/`
   }
 
-  saveKata(kata, [readme, code]);
+  saveKata(kata, [code]);
 })()
 
 async function getKata(slug) {
@@ -38,6 +33,3 @@ function saveKata(kata, files) {
 function createReadMe(kata) {
   return `# ${kata.name}\n${kata.description}`
 }
-
-
-
