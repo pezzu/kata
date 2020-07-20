@@ -1,0 +1,16 @@
+{
+  "name": "kata",
+  "version": "0.0.1",
+  "description": "",
+  "main": "kata.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Peter Sukhenko <peter.sukhenko@gmail.com> (http://pesu.dev)",
+  "license": "MIT",
+  "dependencies": {
+    "bent": "^7.3.7"
+  },
+  "devDependencies": {}
+}
