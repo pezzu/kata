@@ -14,7 +14,7 @@ if (!kataId) {
   const kata = await getKata(kataId)
   const code = {
     name: kata.slug + '.js',
-    data: `/**\n${kata.description}\n*/`
+    data: `/**\n# ${kata.name}\n---\n${kata.description}\n*/`
   }
 
   saveKata(kata, [code]);
@@ -27,7 +27,7 @@ async function getKata(slug) {
 
 function saveKata(kata, files) {
   files.forEach(file => {
-    console.log(`Saving ${kata.slug}: ${file.name}`)
+    console.log(`Saving ${kata.name}: ${file.name}`)
     fs.writeFileSync(file.name, file.data)
   });
 }
