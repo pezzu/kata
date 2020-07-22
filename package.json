@@ -1,12 +1,12 @@
 {
   "name": "kata",
   "version": "0.0.1",
-  "description": "",
+  "description": "Grab kata from CodeWars for local hacking",
   "main": "kata.js",
   "scripts": {
     "test": "jest"
   },
-  "keywords": [],
+  "keywords": ["codewars", "bent"],
   "author": "Peter Sukhenko <peter.sukhenko@gmail.com> (http://pesu.dev)",
   "license": "MIT",
   "dependencies": {
