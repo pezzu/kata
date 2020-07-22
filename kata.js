@@ -17,7 +17,12 @@ if (!kataId) {
     data: `/**\n# ${kata.name}\n---\n${kata.description}\n*/`
   }
 
-  saveKata(kata, [code]);
+  const spec = {
+    name: kata.slug + '.spec.js',
+    data: `require('./${code.name}')`
+  }
+
+  saveKata(kata, [code, spec]);
 })()
 
 async function getKata(slug) {
