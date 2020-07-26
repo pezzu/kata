@@ -14,12 +14,12 @@ if (!kataId) {
   const kata = await getKata(kataId)
   const code = {
     name: kata.slug + '.js',
-    data: `/**\n# [${kata.name}](${kata.url}) (${kata.rank.name})\n---\n${kata.description}\n*/`
+    data: getCode(kata)
   }
 
   const spec = {
     name: kata.slug + '.spec.js',
-    data: `require('./${code.name}')`
+    data: getTests(kata)
   }
 
   saveKata(kata, [code, spec]);
@@ -37,6 +37,14 @@ function saveKata(kata, files) {
   });
 }
 
-function createReadMe(kata) {
-  return `# ${kata.name}\n${kata.description}`
+function getMarkDown(kata) {
+  return `/**\n# [${kata.name}](${kata.url}) (${kata.rank.name})\n---\n${kata.description}\n*/`
+}
+
+function getCode(kata) {
+  return getMarkDown(kata)
+}
+
+function getTests(kata) {
+  return `require('./${kata.slug}.js');`
 }
