@@ -14,7 +14,7 @@ if (!kataId) {
   const kata = await getKata(kataId)
   const code = {
     name: kata.slug + '.js',
-    data: `/**\n# ${kata.name}\n---\n${kata.description}\n*/`
+    data: `/**\n# [${kata.name}](${kata.url}) (${kata.rank.name})\n---\n${kata.description}\n*/`
   }
 
   const spec = {
