@@ -44,7 +44,7 @@ async function getKataCode(slug) {
     .evaluate(() => Array.from(
        document.getElementsByClassName('CodeMirror-lines')[0]
       .getElementsByClassName('CodeMirror-line'))
-      .map(e => e.outerText)
+      .map(e => e.textContent)
       .join('\n'))
     .end()
 }
