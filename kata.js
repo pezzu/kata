@@ -41,5 +41,5 @@ function genSource(kata) {
 }
 
 function genTests(kata) {
-  return `require('./${kata.slug}.js');`
+  return `const Test = require("@codewars/test-compat")`
 }
