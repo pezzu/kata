@@ -27,8 +27,9 @@ const getKata = async (id) => {
 }
 
 const extractId = (urlOrSlug) => {
-  const url = new RegExp(/https:\/\/www\.codewars\.com\/kata\/([^\/]+)/i);
-  return url.test(urlOrSlug)? urlOrSlug.match(url)[1] : urlOrSlug;
+  const url = `${CODEWARS_URL}kata\/([^\/]+)`
+  const urlre = new RegExp(url, 'i');
+  return urlre.test(urlOrSlug)? urlOrSlug.match(urlre)[1] : urlOrSlug;
 }
 
 module.exports = { getKata, extractId }
