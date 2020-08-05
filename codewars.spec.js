@@ -18,7 +18,9 @@ describe("Code Challege API", () => {
   })
 
   it("Throws reasonanble error if kata doesn't exist", async () => {
-
+    expect(async () => {
+      await getKata('this-kata-doesnt-exist-for-sure')
+    }).toThrow()
   })
 
   it("Grabs source code for challenge editor", async () => {
