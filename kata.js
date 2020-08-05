@@ -1,7 +1,6 @@
 const fs = require('fs')
 
-const { extractId } = require('./cw-url-parser')
-const { getKata } = require('./codewars')
+const { getKata, extractId } = require('./codewars')
 
 const kataId = extractId(process.argv[2])
 
