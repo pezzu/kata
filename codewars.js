@@ -13,17 +13,19 @@ const grabSourceCode = async (id) => {
   return nightmare
     .goto(`${CODEWARS_URL}/kata/${id}/train/javascript`)
     .wait('#code_container')
-    .evaluate(() => Array.from(
-       document.getElementsByClassName('CodeMirror-lines')[0]
-      .getElementsByClassName('CodeMirror-line'))
-      .map(e => e.textContent)
-      .join('\n'))
+    .evaluate(() =>
+      Array.from(document.getElementsByClassName('CodeMirror-lines'))
+        .map(element => element.getElementsByClassName('CodeMirror-line'))
+        .map(element => Array.from(element)
+          .map(element => element.textContent)
+          .join('\n'))
+        )
     .end()
 }
 
 const getKata = async (id) => {
   return Promise.all([getCodeChallengeInfo(id), grabSourceCode(id)])
-    .then(([ kata, code ]) => ({ ...kata, code }));
+    .then(([ kata, [code, test] ]) => ({ ...kata, code, test }));
 }
 
 const extractId = (urlOrSlug) => {

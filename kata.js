@@ -40,5 +40,5 @@ function genSource(kata) {
 }
 
 function genTests(kata) {
-  return `const Test = require("@codewars/test-compat")`
+  return `const Test = require("@codewars/test-compat")\n\n${kata.test}`
 }
