@@ -1,6 +1,5 @@
-const fs = require('fs')
-
 const { getKata, extractId } = require('./codewars')
+const { saveKata } = require('./persistence')
 
 const kataId = extractId(process.argv[2])
 
@@ -23,13 +22,6 @@ if (!kataId) {
 
   saveKata(kata, [code, spec]);
 })()
-
-function saveKata(kata, files) {
-  files.forEach(file => {
-    console.log(`Saving ${kata.name}: ${file.name}`)
-    fs.writeFileSync(file.name, file.data)
-  });
-}
 
 function getMarkDown(kata) {
   return `/**\n# [${kata.name}](${kata.url}) (${kata.rank.name})\n---\n${kata.description}\n*/`
