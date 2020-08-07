@@ -12,14 +12,15 @@ const grabSourceCode = async (id) => {
   const nightmare = Nightmare()
   return nightmare
     .goto(`${CODEWARS_URL}/kata/${id}/train/javascript`)
-    .wait('#code_container')
+    .wait('#code')
+    .wait('#fixture')
     .evaluate(() =>
       Array.from(document.getElementsByClassName('CodeMirror-lines'))
         .map(element => element.getElementsByClassName('CodeMirror-line'))
         .map(element => Array.from(element)
           .map(element => element.textContent)
           .join('\n'))
-        )
+    )
     .end()
 }
 
