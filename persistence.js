@@ -5,7 +5,7 @@ const saveKata = (kata, files, options = {}) => {
   
   if (options.directory) {
     fs.mkdirSync(options.directory, { recursive: true })
-    files.forEach(file => file.name = path.join(options.directory, file.name))
+    files = files.map(file => ({ ...file, name: path.join(options.directory, file.name) }))
   }
 
   files.forEach(file => {
