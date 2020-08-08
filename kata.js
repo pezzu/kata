@@ -20,7 +20,7 @@ if (!kataId) {
     data: genTests(kata)
   }
 
-  saveKata(kata, [code, spec]);
+  saveKata(kata, [code, spec], { directory: kata.name } );
 })()
 
 function getMarkDown(kata) {
