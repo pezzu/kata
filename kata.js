@@ -25,7 +25,8 @@ if (!kataId) {
     data: getMarkDown(kata)
   }
 
-  saveKata(kata, [code, spec, readme], { directory: kata.name } );
+  const directory = process.argv[3] || kata.name
+  saveKata(kata, [code, spec, readme], { directory } );
 })()
 
 function getMarkDown(kata) {
