@@ -20,15 +20,20 @@ if (!kataId) {
     data: genTests(kata)
   }
 
-  saveKata(kata, [code, spec], { directory: kata.name } );
+  const readme = {
+    name: 'README.md',
+    data: getMarkDown(kata)
+  }
+
+  saveKata(kata, [code, spec, readme], { directory: kata.name } );
 })()
 
 function getMarkDown(kata) {
-  return `/**\n# [${kata.name}](${kata.url}) (${kata.rank.name})\n---\n${kata.description}\n*/`
+  return `# [${kata.name}](${kata.url}) (${kata.rank.name})\n---\n${kata.description}\n`
 }
 
 function genSource(kata) {
-  return `${getMarkDown(kata)}\n\n${kata.code}`
+  return kata.code
 }
 
 function genTests(kata) {
