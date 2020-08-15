@@ -13,8 +13,7 @@
   "author": "Peter Sukhenko <peter.sukhenko@gmail.com> (http://pesu.dev)",
   "license": "MIT",
   "dependencies": {
-    "bent": "^7.3.7",
-    "nightmare": "^3.0.2"
+    "bent": "^7.3.7"
   },
   "devDependencies": {
     "jest": "^26.1.0"

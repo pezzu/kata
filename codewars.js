@@ -1,36 +1,34 @@
 const bent = require('bent')
-const Nightmare = require('Nightmare')
 
-const CODEWARS_URL = 'https://www.codewars.com/'
+const CODEWARS = 'https://www.codewars.com/'
 
-const getCodeChallengeInfo = async (id) => {
-  const get = bent(CODEWARS_URL, 'GET', 'json')
-  return get(`api/v1/code-challenges/${id}`)
+const get = bent(CODEWARS, 'GET')
+const post = bent(CODEWARS, 'POST', 'json')
+
+const getCodeChallengeInfo = (id) => get(`api/v1/code-challenges/${id}`).then(response => response.json())
+
+const grabSourceCode = (id) => {
+  const headers = {}
+  return get(`kata/${id}/train/javascript`)
+    .then(page => {
+      headers['Cookie'] = `${page.headers['set-cookie'][0].split(';')[0]}; ${page.headers['set-cookie'][1].split(';')[0]}`
+      return page.text()
+    })
+    .then(text => {
+      headers['x-csrf-token'] = text.match(/meta name=\"csrf-token\" content=\"([^\"]+)\"/)[1]
+      headers['authorization'] = text.match(/\"jwt\\\":\\\"([^\"\\]+)\\\"/)[1]
+      const session = text.match(/\"session\":\"([^\"]+)\"/)[1].replace('%7Blanguage%7D', 'javascript')
+      return post(session, null, headers)
+    })
 }
 
-const grabSourceCode = async (id) => {
-  const nightmare = Nightmare()
-  return nightmare
-    .goto(`${CODEWARS_URL}/kata/${id}/train/javascript`)
-    .wait('#code')
-    .wait('#fixture')
-    .evaluate(() =>
-      Array.from(document.getElementsByClassName('CodeMirror-lines'))
-        .map(element => element.getElementsByClassName('CodeMirror-line'))
-        .map(element => Array.from(element)
-          .map(element => element.textContent)
-          .join('\n'))
-    )
-    .end()
-}
-
-const getKata = async (id) => {
+const getKata = (id) => {
   return Promise.all([getCodeChallengeInfo(id), grabSourceCode(id)])
-    .then(([ kata, [code, test] ]) => ({ ...kata, code, test }));
+    .then(([ kata, session ]) => ({ ...kata, code: session.setup, test: session.fixture }))
 }
 
 const extractId = (urlOrSlug) => {
-  const url = `${CODEWARS_URL}kata\/([^\/]+)`
+  const url = `${CODEWARS}kata\/([^\/]+)`
   const urlre = new RegExp(url, 'i');
   return urlre.test(urlOrSlug)? urlOrSlug.match(urlre)[1] : urlOrSlug;
 }
