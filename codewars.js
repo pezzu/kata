@@ -24,7 +24,7 @@ const grabSourceCode = (id) => {
 
 const getKata = (id) => {
   return Promise.all([getCodeChallengeInfo(id), grabSourceCode(id)])
-    .then(([ kata, session ]) => ({ ...kata, code: session.setup, test: session.fixture }))
+    .then(([ kata, session ]) => ({ ...kata, code: session.setup, test: session.exampleFixture }))
 }
 
 const extractId = (urlOrSlug) => {

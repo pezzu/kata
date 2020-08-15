@@ -30,7 +30,7 @@ describe("Code Challege API", () => {
   it("Grabs tests as well", async () => {
     const kata = await getKata('valid-braces')
 
-    expect(kata.spec).toEqual(`Test.assertEquals(validBraces( "()" ), true);\nTest.assertEquals(validBraces( "[(])" ), false);`)
+    expect(kata.test).toEqual(`Test.assertEquals(validBraces( "()" ), true);\nTest.assertEquals(validBraces( "[(])" ), false);`)
   })
 })
 
