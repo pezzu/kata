@@ -8,9 +8,12 @@
   },
   "keywords": [
     "codewars",
-    "bent"
+    "kata"
   ],
-  "author": "Peter Sukhenko <peter.sukhenko@gmail.com> (http://pesu.dev)",
+   "author": {
+    "name": "Peter Sukhenko",
+    "url": "https://github.com/pezzu"
+  },
   "license": "MIT",
   "dependencies": {
     "bent": "^7.3.7"
