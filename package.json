@@ -4,7 +4,7 @@
   "description": "Grab kata from CodeWars for local hacking",
   "main": "kata.js",
   "scripts": {
-    "lint": "esmtk lint",
+    "lint": "standard",
     "test": "jest"
   },
   "keywords": [
@@ -20,8 +20,8 @@
     "bent": "^7.3.7"
   },
   "devDependencies": {
-    "esmtk": "^0.5.0",
-    "jest": "^26.1.0"
+    "jest": "^26.1.0",
+    "standard": "^14.3.4"
   },
   "engines": {
     "node": "~14"
