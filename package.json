@@ -4,13 +4,14 @@
   "description": "Grab kata from CodeWars for local hacking",
   "main": "kata.js",
   "scripts": {
+    "lint": "esmtk lint",
     "test": "jest"
   },
   "keywords": [
     "codewars",
     "kata"
   ],
-   "author": {
+  "author": {
     "name": "Peter Sukhenko",
     "url": "https://github.com/pezzu"
   },
@@ -19,6 +20,7 @@
     "bent": "^7.3.7"
   },
   "devDependencies": {
+    "esmtk": "^0.5.0",
     "jest": "^26.1.0"
   }
 }
