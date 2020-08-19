@@ -26,17 +26,17 @@ if (!kataId) {
   }
 
   const directory = process.argv[3] || kata.name
-  saveKata(kata, [code, spec, readme], { directory } );
+  saveKata(kata, [code, spec, readme], { directory })
 })()
 
-function getMarkDown(kata) {
+function getMarkDown (kata) {
   return `# [${kata.name}](${kata.url}) (${kata.rank.name})\n---\n${kata.description}\n`
 }
 
-function genSource(kata) {
+function genSource (kata) {
   return kata.code
 }
 
-function genTests(kata) {
+function genTests (kata) {
   return `const Test = require("@codewars/test-compat")\n\n${kata.test}`
 }

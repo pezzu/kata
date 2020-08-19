@@ -24,13 +24,13 @@ const grabSourceCode = (id) => {
 
 const getKata = (id) => {
   return Promise.all([getCodeChallengeInfo(id), grabSourceCode(id)])
-    .then(([ kata, session ]) => ({ ...kata, code: session.setup, test: session.exampleFixture }))
+    .then(([kata, session]) => ({ ...kata, code: session.setup, test: session.exampleFixture }))
 }
 
 const extractId = (urlOrSlug) => {
   const url = `${CODEWARS}kata\/([^\/]+)`
-  const urlre = new RegExp(url, 'i');
-  return urlre.test(urlOrSlug)? urlOrSlug.match(urlre)[1] : urlOrSlug;
+  const urlre = new RegExp(url, 'i')
+  return urlre.test(urlOrSlug) ? urlOrSlug.match(urlre)[1] : urlOrSlug
 }
 
 module.exports = { getKata, extractId }
