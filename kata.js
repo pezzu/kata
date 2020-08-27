@@ -9,24 +9,29 @@ if (!kataId) {
 }
 
 (async () => {
-  const kata = await getKata(kataId)
-  const code = {
-    name: kata.slug + '.js',
-    data: genSource(kata)
-  }
+  try {
+    const kata = await getKata(kataId)
+    const code = {
+      name: kata.slug + '.js',
+      data: genSource(kata)
+    }
 
-  const spec = {
-    name: kata.slug + '.spec.js',
-    data: genTests(kata)
-  }
+    const spec = {
+      name: kata.slug + '.spec.js',
+      data: genTests(kata)
+    }
 
-  const readme = {
-    name: 'README.md',
-    data: getMarkDown(kata)
-  }
+    const readme = {
+      name: 'README.md',
+      data: getMarkDown(kata)
+    }
 
-  const directory = process.argv[3] || kata.name
-  saveKata(kata, [code, spec, readme], { directory })
+    const directory = process.argv[3] || kata.name
+    saveKata(kata, [code, spec, readme], { directory })
+  } catch (e) {
+    console.error('Runtime error: ', e)
+    process.exit(1)
+  }
 })()
 
 function getMarkDown (kata) {
