@@ -2,8 +2,12 @@ const bent = require('bent')
 
 const CODEWARS = 'https://www.codewars.com/'
 
-const get = bent(CODEWARS, 'GET')
-const post = bent(CODEWARS, 'POST', 'json')
+const timeout = (request, time) => (...args) => Promise.race([request(...args), new Promise((resolve, reject) => {
+  setTimeout(reject, time, 'Timeout exceeded')
+})])
+
+const get = timeout(bent(CODEWARS, 'GET'), 5000)
+const post = timeout(bent(CODEWARS, 'POST', 'json'), 5000)
 
 const getCodeChallengeInfo = (id) => get(`api/v1/code-challenges/${id}`).then(response => response.json())
 
