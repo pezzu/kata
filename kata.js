@@ -26,7 +26,7 @@ if (!kataId) {
       data: getMarkDown(kata)
     }
 
-    const directory = process.argv[3] || kata.name
+    const directory = process.argv[3] || kata.slug
     saveKata(kata, [code, spec, readme], { directory })
   } catch (e) {
     console.error('Runtime error: ', e)
